@@ -3,7 +3,6 @@ import { write } from "./io/write.ts";
 import { getTemplate, loadSourceFileContents } from "./io/read.ts";
 import { DenoteConfig, IDenoteConfig } from "./config.ts";
 
-
 export function denote(config: IDenoteConfig): void {
   console.time("compiling finished");
 
