@@ -1,7 +1,7 @@
 import { existsSync } from "https://deno.land/std/fs/mod.ts";
-import { ILitheConfig } from "../config.ts";
+import { DenoteConfig } from "../config.ts";
 
-export function write(output: string, sourceConfig: ILitheConfig): void {
+export function write(output: string, sourceConfig: DenoteConfig): void {
   const outputFolderPath = sourceConfig.getOutputFolderPath();
   console.log("outputFolderPath", outputFolderPath);
   createOutputFolderIfNotExists(outputFolderPath);

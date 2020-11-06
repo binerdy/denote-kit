@@ -1,9 +1,8 @@
-import * as path from "https://deno.land/std@0.76.0/path/mod.ts";
 import { existsSync } from "https://deno.land/std/fs/mod.ts";
 import { SourceFolderEmptyError, SourceFolderMissingError } from "./errors.ts";
-import { ILitheConfig } from "../config.ts";
+import { DenoteConfig } from "../config.ts";
 
-function loadSourceFilePaths(litheConfig: ILitheConfig): string[] {
+function loadSourceFilePaths(litheConfig: DenoteConfig): string[] {
   const sourceFolderPath = litheConfig.getSourceFolderPath();
   if (!existsSync(sourceFolderPath)) {
     throw new SourceFolderMissingError(sourceFolderPath);
@@ -11,13 +10,13 @@ function loadSourceFilePaths(litheConfig: ILitheConfig): string[] {
   const sourceFiles = [...Deno.readDirSync(sourceFolderPath)]
     .filter((entry: Deno.DirEntry) => entry.isFile)
     .filter((entry: Deno.DirEntry) =>
-      entry.name.endsWith(litheConfig.fileExtension)
+      entry.name.endsWith(litheConfig.values.fileExtension)
     )
     .map((entry: Deno.DirEntry) => `${sourceFolderPath}/${entry.name}`);
   if (!sourceFiles.length) {
     throw new SourceFolderEmptyError(
       sourceFolderPath,
-      litheConfig.fileExtension,
+      litheConfig.values.fileExtension,
     );
   }
   for (const sourceFile of sourceFiles) {
@@ -30,13 +29,13 @@ function getFileContent(filePath: string): string {
   return Deno.readTextFileSync(filePath);
 }
 
-export function getTemplate(litheConfig: ILitheConfig): string {
+export function getTemplate(litheConfig: DenoteConfig): string {
   const templateUrl = litheConfig.getTemplateFilePath();
   console.log("templatePath", templateUrl);
   return Deno.readTextFileSync(templateUrl);
 }
 
-export function loadSourceFileContents(sourceConfig: ILitheConfig): string[] {
+export function loadSourceFileContents(sourceConfig: DenoteConfig): string[] {
   return loadSourceFilePaths(sourceConfig)
     .map((filePath: string) => getFileContent(filePath));
 }

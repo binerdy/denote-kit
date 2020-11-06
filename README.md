@@ -1,4 +1,4 @@
-# lithe kit
+# denote kit
 
 ## run
 ```
