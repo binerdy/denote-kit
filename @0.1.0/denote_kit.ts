@@ -4,7 +4,7 @@ import { getTemplate, loadSourceFileContents } from "./io/read.ts";
 import { DenoteConfig, IDenoteConfig } from "./config.ts";
 
 
-export function lithe(config: IDenoteConfig): void {
+export function denote(config: IDenoteConfig): void {
   console.time("compiling finished");
 
   const sourceConfig = new DenoteConfig(config);
