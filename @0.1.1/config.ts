@@ -1,7 +1,6 @@
 import * as path from "https://deno.land/std@0.76.0/path/mod.ts";
 
 export interface IDenoteConfig {
-  basePath: string;
   fileExtension: string;
   sourceFolderName: string;
   outputFolderName: string;
