@@ -1,6 +1,20 @@
 # denote kit
 
-## run
+## Basic usage
 ```
-deno run --allow-read --unstable .\index.ts
+import { denote } from "https://raw.githubusercontent.com/binerdy/denote-kit/master/@0.1.2/denote_kit.ts";
+
+denote({
+  basePath: 'Your path here...',
+  fileExtension: ".txt",
+  sourceFolderName: "blog",
+  outputFolderName: "build",
+  outputFileName: "index.html",
+  templateFileName: "template.html",
+});
+```
+
+Run command
+```
+deno run --unstable --allow-read --allow-write .\your_file.ts
 ```
